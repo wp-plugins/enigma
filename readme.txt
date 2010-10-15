@@ -4,7 +4,7 @@ Donate link: http://leonax.net
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 1.0
+Stable tag: 1.0.2
 
 Enigma encrypts text and decrypts it on client to avoid your 
 email address and any other sensitive content caught robots.

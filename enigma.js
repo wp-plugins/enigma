@@ -5,7 +5,10 @@ var enigma = {
         for(var i = 0; i < strs.length; ++i){
             res += String.fromCharCode(parseInt(strs[i]));
         }
-        jQuery("#"+div).remove();
-        document.write(res);
+        var masks = jQuery("#"+div);
+        if (masks != null && masks.length > 0) {
+            masks.remove();
+            document.write(res);
+        }
     },
 };

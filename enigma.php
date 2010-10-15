@@ -4,7 +4,7 @@ Plugin Name: Enigma
 Plugin URI: http://www.leonax.net/
 Description: Enigma encrypts any text (if you want) on server and decrypts it on client (using javascript) to avoid your email and any other sensitive content being understood by robots and net filters. Simply add [enigma]...[/enigma] shortcode to encypt your blog.
 Author: Shuhai Shen
-Version: 1.0
+Version: 1.0.2
 Author URI: http://www.leonax.net/
 */
 
@@ -59,7 +59,7 @@ function enigma_init(){
     global $enigma_script_handle;
     
     $enigma_path = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__));
-    wp_register_script($enigma_script_handle, $enigma_path . $enigma_js_name);
+    wp_register_script($enigma_script_handle, $enigma_path . $enigma_js_name, array('jquery'), '1.0.2');
     wp_enqueue_script($enigma_script_handle);
     
 }
