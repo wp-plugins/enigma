@@ -3,8 +3,8 @@ Contributors: Shuhai Shen
 Donate link: http://leonax.net
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
-Tested up to: 3.0
-Stable tag: 1.0.2
+Tested up to: 3.1.3
+Stable tag: 1.0.3
 
 Enigma encrypts text and decrypts it on client to avoid your 
 email address and any other sensitive content caught robots.
@@ -14,7 +14,7 @@ email address and any other sensitive content caught robots.
 Enigma encrypts text and decrypts it on client to avoid your 
 email address and any other sensitive content caught robots.
 
-Use short code [enigma]...[/enigma] to encrypt any of your blog.
+Use short code [enigma]...[/enigma] to encrypt any content of your post.
 
 Samples:
 1. [enigma]content I don't want search engine to catch.[/enigma]
