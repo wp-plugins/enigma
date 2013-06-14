@@ -95,6 +95,21 @@ function enigma_ord($str, $len = -1, $idx = 0, &$bytes = 0){
     return false;
 }
 
+function enigma_unicode($dec) {
+	$hex = dechex($dec);
+	if ($dec < 16) {
+		return '\\x0' . $hex;
+	}
+	if ($dec < 256) {
+		return '\\x' . $hex;
+	}
+	
+	while(strlen($hex) < 4) {
+		$hex = '0' . $hex;
+	}
+	return '\\u' . $hex;
+}
+
 function enigma_encode($content, $text = ""){
     if ($content == NULL || is_feed()){
         return $text;
@@ -109,10 +124,10 @@ function enigma_encode($content, $text = ""){
     $idx = 0;
     
     $ord = enigma_ord($content, $len, $idx, $idx);
-    $script = '\\u' . dechex($ord);
+    $script = enigma_unicode($ord);
     while ( $idx < $len){
         $bytes = 0;
-        $script .= '\\u' . dechex(enigma_ord($content, $len, $idx, $bytes));
+        $script .= enigma_unicode(enigma_ord($content, $len, $idx, $bytes));
         $idx += $bytes;
     }
     
@@ -125,7 +140,7 @@ function enigma_encode($content, $text = ""){
     $js = <<<EOT
 <span id="$divid">$text</span>
 <script type="text/javascript" id="s$divid">
-enigma.decode("$script", "$divid");
+enigma.cache["$divid"]="$script";
 </script>
 EOT;
     
