@@ -35,3 +35,8 @@ Samples:
 
 Not applicable! There is no GUI in enigma. All the encryption and
 decryption is done automatically.
+
+== Changelog ==
+
+= 1.1 =
+* Optimize internal logic.
