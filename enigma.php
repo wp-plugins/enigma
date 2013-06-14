@@ -4,12 +4,12 @@ Plugin Name: Enigma
 Plugin URI: http://www.leonax.net/
 Description: Enigma encrypts any text (if you want) on server and decrypts it on client (using javascript) to avoid your email and any other sensitive content being understood by robots and net filters. Simply add [enigma]...[/enigma] shortcode to encypt your blog.
 Author: Shuhai Shen
-Version: 1.0.3
+Version: 1.1
 Author URI: http://www.leonax.net/
 */
 
 /* LICENSE (MIT)
-Copyright (c) 2009 - 2010 Shuhai Shen
+Copyright (c) 2009 - 2013 Shuhai Shen
 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
@@ -59,7 +59,7 @@ function enigma_init(){
     global $enigma_script_handle;
     
     $enigma_path = WP_PLUGIN_URL . '/' . str_replace(basename(__FILE__), "", plugin_basename(__FILE__));
-    wp_register_script($enigma_script_handle, $enigma_path . $enigma_js_name, array('jquery'), '1.0.3');
+    wp_register_script($enigma_script_handle, $enigma_path . $enigma_js_name, array('jquery'), '1.1');
     wp_enqueue_script($enigma_script_handle);
     
 }
@@ -107,11 +107,12 @@ function enigma_encode($content, $text = ""){
     }
     
     $idx = 0;
-    $result = enigma_ord($content, $len, $idx, $idx);
+    
+    $ord = enigma_ord($content, $len, $idx, $idx);
+    $script = '\\u' . dechex($ord);
     while ( $idx < $len){
         $bytes = 0;
-        $result .= ' ';
-        $result .= enigma_ord($content, $len, $idx, $bytes);
+        $script .= '\\u' . dechex(enigma_ord($content, $len, $idx, $bytes));
         $idx += $bytes;
     }
     
@@ -123,8 +124,8 @@ function enigma_encode($content, $text = ""){
 
     $js = <<<EOT
 <span id="$divid">$text</span>
-<script type="text/javascript">
-enigma.decode("$result", "$divid");
+<script type="text/javascript" id="s$divid">
+enigma.decode("$script", "$divid");
 </script>
 EOT;
     
