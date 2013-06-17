@@ -4,7 +4,7 @@ Plugin Name: Enigma
 Plugin URI: http://www.leonax.net/
 Description: Enigma encrypts any text (if you want) on server and decrypts it on client (using javascript) to avoid your email and any other sensitive content being understood by robots and net filters. Simply add [enigma]...[/enigma] shortcode to encypt your blog.
 Author: Shuhai Shen
-Version: 1.1
+Version: 1.4
 Author URI: http://www.leonax.net/
 */
 
@@ -31,18 +31,6 @@ Copyright (c) 2009 - 2013 Shuhai Shen
  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
-*/
-
-/* 
-Use short code [enigma]...[/enigma] to encrypt any of your blog.
-
-Samples:
-1. [enigma]content I don't want search engine to catch.[/enigma]
-    The content inside engima tag will be encrypted and search engines
-    get nothing.
-2. [enigma text="Hello World"]Actual Text[/enigma]
-    Search engine will only see "Hello World" but normal user will see
-    "Actual Text".
 */
 
 $enigma_path = NULL;
