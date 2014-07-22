@@ -3,8 +3,8 @@ Contributors: Shuhai Shen
 Donate link: http://leonax.net
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
-Tested up to: 3.5
-Stable tag: 1.6
+Tested up to: 3.9.1
+Stable tag: 1.7
 
 Enigma encrypts text and decrypts it on client to avoid your 
 email address and any other sensitive content caught robots.
@@ -42,6 +42,9 @@ Not applicable! There is no GUI in enigma. All the encryption and
 decryption is done automatically.
 
 == Changelog ==
+
+= 1.7 =
+* Update to WordPress 3.9.1
 
 = 1.6 =
 * Remove client JS.
