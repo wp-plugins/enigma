@@ -4,7 +4,7 @@ Plugin Name: Enigma
 Plugin URI: http://www.leonax.net/
 Description: Enigma encrypts any text (if you want) on server and decrypts it on client (using javascript) to avoid your email and any other sensitive content being understood by robots and net filters. Simply add [enigma]...[/enigma] shortcode to encypt your blog.
 Author: Shuhai Shen
-Version: 1.8
+Version: 1.9
 Author URI: http://www.leonax.net/
 */
 
@@ -124,7 +124,7 @@ function enigma_encode($content, $text = ""){
         $divid .= rand(0, 10);
     }
 
-    $js = "<span id='$divid'>$text</span><script type='text/javascript'>var x = document.getElementById('$divid');x.parentNode.removeChild(x);document.write('$script');</script>";
+    $js = "<span id='$divid'>$text</span><script type='text/javascript'>jQuery('#$divid').replaceWith('$script');</script>";
     
     return $js;
 }
