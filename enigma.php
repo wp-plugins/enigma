@@ -4,12 +4,12 @@ Plugin Name: Enigma
 Plugin URI: http://www.leonax.net/
 Description: Enigma encrypts any text (if you want) on server and decrypts it on client (using javascript) to avoid your email and any other sensitive content being understood by robots and net filters. Simply add [enigma]...[/enigma] shortcode to encypt your blog.
 Author: Shuhai Shen
-Version: 1.9
+Version: 2.0
 Author URI: http://www.leonax.net/
 */
 
 /* LICENSE (MIT)
-Copyright (c) 2009 - 2013 Shuhai Shen
+Copyright (c) 2009 - 2014 Shuhai Shen
 
  Permission is hereby granted, free of charge, to any person
  obtaining a copy of this software and associated documentation
@@ -97,14 +97,14 @@ function enigma_unicode($dec) {
 	return '\\u' . $hex;
 }
 
-function enigma_encode($content, $text = ""){
+function enigma_encode($content, $text = "", $ondemand = 'n'){
     if ($content == NULL || is_feed()){
         return $text;
     }
     
     $len = strlen($content);
     
-    if ($len == 0){
+    if ($len == 0) {
         return "";
     }
     
@@ -118,27 +118,27 @@ function enigma_encode($content, $text = ""){
         $idx += $bytes;
     }
     
-    $divid = "engimadiv";
-    
-    for ($i = 0; $i < 5; ++$i) {
-        $divid .= rand(0, 10);
+    $divid = uniqid("engimadiv");
+    if ($ondemand === 'n') {
+        $js = "<span id='$divid'>$text</span><script type='text/javascript'>jQuery('#$divid').replaceWith('$script');</script>";
+    } else {
+        $js = "<span id='$divid'><a href='#' onclick=\"jQuery('#$divid').replaceWith('$script');return false;\">$text</a></span>";
     }
-
-    $js = "<span id='$divid'>$text</span><script type='text/javascript'>jQuery('#$divid').replaceWith('$script');</script>";
     
     return $js;
 }
 
-function enigma_process($attr, $content = NULL){
+function enigma_process($attr, $content = NULL) {
     extract(
         shortcode_atts(
             array(
-                'text' => ''
+                'text' => '',
+                'ondemand' => 'n'
             ),
             $attr
         )
     );
-    return enigma_encode($content, $text);
+    return enigma_encode($content, $text, $ondemand);
 }
 
 ?>
