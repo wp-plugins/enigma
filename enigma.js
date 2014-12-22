@@ -38,5 +38,6 @@ Enigma.prototype.Run = function() {
 };
 
 jQuery(function() {
+  new Enigma().Run();
   setInterval(function() { new Enigma().Run();}, 1000);
 });

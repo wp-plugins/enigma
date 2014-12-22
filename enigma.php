@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Enigma
-Plugin URI: https://www.leonax.net/
-Description: Enigma encrypts any text (if you want) on server and decrypts it on client (using javascript) to avoid your email and any other sensitive content being understood by robots and net filters. Simply add [enigma]...[/enigma] shortcode to encypt your blog.
+Plugin URI: https://leonax.net/
+Description: Enigma encrypts any text on demand on server and decrypts in browser to avoid censorship. 
 Author: Shuhai Shen
-Version: 2.1
-Author URI: https://www.leonax.net/
+Version: 2.1.1
+Author URI: https://leonax.net/
 */
 
 /* LICENSE (MIT)
@@ -94,7 +94,7 @@ function enigma_unicode($dec) {
   return '\\u' . $hex;
 }
 
-function enigma_encode($content, $text = "", $ondemand = 'n'){
+function enigma_encode($content, $text = "", $ondemand = 'n') {
   if ($content == NULL || is_feed()){
     return $text;
   }
@@ -109,7 +109,7 @@ function enigma_encode($content, $text = "", $ondemand = 'n'){
 
   $ord = enigma_ord($content, $len, $idx, $idx);
   $script = enigma_unicode($ord);
-  while ( $idx < $len){
+  while ( $idx < $len) {
     $bytes = 0;
     $script .= enigma_unicode(enigma_ord($content, $len, $idx, $bytes));
     $idx += $bytes;

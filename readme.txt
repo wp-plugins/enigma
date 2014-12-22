@@ -4,17 +4,17 @@ Donate link: http://leonax.net
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
 Tested up to: 4.1
-Stable tag: 2.1
+Stable tag: 2.1.1
 License: MIT
 License URI: http://www.opensource.org/licenses/mit-license.php
 
-Enigma encrypts text and decrypts it on client to avoid your email address and
- any other sensitive content caught robots.
+Enigma encrypts text on demand and decrypts it on client to avoid your email
+ address and any other sensitive content caught robots.
 
 == Description ==
 
-Enigma encrypts text and decrypts it on client to avoid your email address and
- any other sensitive content caught robots.
+Enigma encrypts text on demand and decrypts it on client to avoid your email
+ address and any other sensitive content caught robots.
 
 Use short code [enigma]...[/enigma] to encrypt any content of your post.
 
@@ -53,6 +53,9 @@ Not applicable! There is no GUI in enigma. All the encryption and
 decryption is done automatically.
 
 == Changelog ==
+
+= 2.1.1 =
+* Slightly improved performance.
 
 = 2.1 =
 * Rewrite of core functionalities.
