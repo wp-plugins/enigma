@@ -3,16 +3,18 @@ Contributors: Shuhai Shen
 Donate link: http://leonax.net
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
-Tested up to: 4.0
-Stable tag: 2.0
+Tested up to: 4.1
+Stable tag: 2.1
+License: MIT
+License URI: http://www.opensource.org/licenses/mit-license.php
 
-Enigma encrypts text and decrypts it on client to avoid your 
-email address and any other sensitive content caught robots.
+Enigma encrypts text and decrypts it on client to avoid your email address and
+ any other sensitive content caught robots.
 
 == Description ==
 
-Enigma encrypts text and decrypts it on client to avoid your 
-email address and any other sensitive content caught robots.
+Enigma encrypts text and decrypts it on client to avoid your email address and
+ any other sensitive content caught robots.
 
 Use short code [enigma]...[/enigma] to encrypt any content of your post.
 
@@ -28,6 +30,11 @@ Samples:
     Search engine will only see "Hello World" but normal user will see
     "Actual Text".
 
+3. [enigma text="Click here" ondemand="y"]<img ...>[/enigma]
+
+    A clickable instruction "Click here" is shown, and after user clicks it,
+    the text will be replaced with the <img>.
+
 == Installation ==
 
 1. Install Engima from Wordpress website.
@@ -36,12 +43,19 @@ Samples:
 
 == Frequently Asked Questions ==
 
+What browsers does Engima support?
+All major browsers, including but not limited to, Chrome, Firefox,
+ Internet Explorer, Safari, etc.
+
 == Screenshots ==
 
 Not applicable! There is no GUI in enigma. All the encryption and
 decryption is done automatically.
 
 == Changelog ==
+
+= 2.1 =
+* Rewrite of core functionalities.
 
 = 2.0 =
 * Add new attribute 'ondemond'.
