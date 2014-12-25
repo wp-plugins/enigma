@@ -1,6 +1,4 @@
-function Enigma() {
-  
-}
+function Enigma() { }
 
 Enigma.prototype.GetValue = function(element) {
   return jQuery(element).attr('data-enigmav');
@@ -27,9 +25,6 @@ Enigma.prototype.Clickable = function(element) {
 Enigma.prototype.Run = function() {
   var thisEnigma = this;
   jQuery('span[id^="engimadiv"]').each(function(idx, element) {
-    if (jQuery(element).attr('data-enigmar')) {
-      return;
-    }
     if (jQuery(element).attr('data-enigmad') === 'y') {
       return thisEnigma.Clickable(element);
     }
@@ -39,5 +34,5 @@ Enigma.prototype.Run = function() {
 
 jQuery(function() {
   new Enigma().Run();
-  setInterval(function() { new Enigma().Run();}, 1000);
+  setInterval(function() { new Enigma().Run();}, 2000);
 });
