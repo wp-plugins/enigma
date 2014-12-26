@@ -4,7 +4,7 @@ Donate link: http://mv2.it/donate
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
 Tested up to: 4.1
-Stable tag: 2.1.3
+Stable tag: trunk
 License: MIT
 License URI: http://www.opensource.org/licenses/mit-license.php
 
