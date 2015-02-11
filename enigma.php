@@ -4,7 +4,7 @@ Plugin Name: Enigma
 Plugin URI: https://leonax.net/
 Description: Enigma encrypts any text on demand on server and decrypts in browser to avoid censorship. 
 Author: Shuhai Shen
-Version: 2.1.4
+Version: 2.2
 Author URI: https://leonax.net/
 License: MIT
 */
@@ -58,18 +58,7 @@ function enigma_ord($str, $len = -1, $idx = 0, &$bytes = 0){
 }
 
 function enigma_unicode($dec) {
-  $hex = dechex($dec);
-  if ($dec < 16) {
-	return '\\x0' . $hex;
-  }
-  if ($dec < 256) {
-    return '\\x' . $hex;
-  }
-  if ($dec < 4096) {
-	return '\\u0' . $hex;
-  }
-
-  return '\\u' . $hex;
+  return '\\u' . str_pad(dechex($dec), 4, '0', STR_PAD_LEFT);
 }
 
 function enigma_encode($content, $text, $ondemand) {

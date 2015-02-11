@@ -35,6 +35,10 @@ Samples:
     A clickable instruction "Click here" is shown, and after user clicks it,
     the text will be replaced with the <img>.
 
+4. [engima text="Reply and see" ondemand="replied"]Content that is not visiable until reader replies.[/engima]
+    The content will be invisible to user, until he/she replies. This feature
+    is compatible with Wordpress caching plugins.
+
 == Installation ==
 
 1. Install Engima from Wordpress website.
@@ -53,6 +57,9 @@ Not applicable! There is no GUI in enigma. All the encryption and
 decryption is done automatically.
 
 == Changelog ==
+
+= 2.2 =
+* Add an experimental feature that content requires user to reply to see.
 
 = 2.1.3 =
 * Performance improvement.
