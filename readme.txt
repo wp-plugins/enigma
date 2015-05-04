@@ -3,7 +3,7 @@ Contributors: Shuhai Shen
 Donate link: http://mv2.it/donate
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
-Tested up to: 4.1
+Tested up to: 4.2.1
 Stable tag: trunk
 License: MIT
 License URI: http://www.opensource.org/licenses/mit-license.php
@@ -57,6 +57,10 @@ Not applicable! There is no GUI in enigma. All the encryption and
 decryption is done automatically.
 
 == Changelog ==
+
+= 2.3 =
+* Integration with Google Analytics. If you have GA enabled at your blog, Engima
+  now sends an event when user clicks a Engima clickable link.
 
 = 2.2 =
 * Add an experimental feature that content requires user to reply to see.
