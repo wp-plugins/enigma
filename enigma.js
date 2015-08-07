@@ -11,6 +11,7 @@
       return;
     }
     jQuery(element).replaceWith(jQuery.parseJSON('"' + value + '"'));
+    jQuery(document).trigger('Enigma:Changed');
   };
   
   Enigma.prototype.Clickable = function(element) {
@@ -38,6 +39,8 @@
       aData.el = label;
       aData.ev = value;
       Leona.analytics.post(aData);
+    } else if (typeof ga === 'function') {
+      ga('send', 'event', category, action, label, value);
     }
   };
   

@@ -4,26 +4,19 @@ Plugin Name: Enigma
 Plugin URI: https://leonax.net/
 Description: Enigma encrypts any text on demand on server and decrypts in browser to avoid censorship. 
 Author: Shuhai Shen
-Version: 2.3
+Version: 2.4
 Author URI: https://leonax.net/
 License: MIT
 */
 
-$enigma_script_handle = 'engima_script';
-$enigma_js_name = 'enigma.js';
-
 add_action('init', 'enigma_init');
-
 add_shortcode('enigma', 'enigma_process');
 
 function enigma_init(){
-  global $enigma_js_name;
-  global $enigma_script_handle;
-
   if (!is_admin()) {
     wp_enqueue_script(
-      $enigma_script_handle,
-      plugins_url( $enigma_js_name , __FILE__ ),
+      'engima_script',
+      plugins_url( 'enigma.js' , __FILE__ ),
       array( 'jquery' ),
       false,
       true);
@@ -31,10 +24,10 @@ function enigma_init(){
 }
 
 function enigma_ord($str, $len = -1, $idx = 0, &$bytes = 0){
-  if ($len == -1){
+  if ($len === -1){
     $len = strlen(str);
   }
-  $h = ord($str{$idx});
+  $h = ord($str[$idx]);
 
   if ($h <= 0x7F) {
     $bytes = 1;
@@ -62,13 +55,13 @@ function enigma_unicode($dec) {
 }
 
 function enigma_encode($content, $text, $ondemand) {
-  if ($content == NULL || is_feed()){
+  if ($content === NULL || is_feed()){
     return $text;
   }
 
   $len = strlen($content);
 
-  if ($len == 0) {
+  if ($len === 0) {
     return "";
   }
 
@@ -89,15 +82,8 @@ function enigma_encode($content, $text, $ondemand) {
 }
 
 function enigma_process($attr, $content = NULL) {
-  extract(
-    shortcode_atts(
-      array(
-        'text' => '',
-        'ondemand' => 'n'
-      ),
-    $attr)
-  );
-  return enigma_encode($content, $text, $ondemand);
+  shortcode_atts(array('text' => '', 'ondemand' => 'n'), $attr);
+  return enigma_encode($content, $attr['text'], $attr['ondemand']);
 }
 
 ?>

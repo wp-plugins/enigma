@@ -58,6 +58,10 @@ decryption is done automatically.
 
 == Changelog ==
 
+= 2.4=
+* Actually integrated with Google Analytics.
+* Enigma now fires a 'Enigma:Changed' event on document, after hidden content are displayed.
+
 = 2.3 =
 * Integration with Google Analytics. If you have GA enabled at your blog, Engima
   now sends an event when user clicks a Engima clickable link.
