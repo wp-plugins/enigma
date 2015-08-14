@@ -5,12 +5,29 @@
     return jQuery(element).attr('data-enigmav');
   };
   
+  Enigma.prototype.GetType = function(element) {
+    var type = jQuery(element).attr('data-enigmat');
+    if (typeof type !== 'undefined' && type !== false) {
+      return parseInt(type, 10);
+    }
+    return 0;
+  };
+  
+  Enigma.prototype.Decode = function(value, type) {
+    if (type === 1) {
+      value = value.replace(/-/g, '\\u00');
+      value = value.replace(/=/g, '\\u');
+    }
+    return jQuery.parseJSON('"' + value + '"');
+  };
+  
   Enigma.prototype.Replace = function(element) {
     var value = this.GetValue(element);
     if (!value) {
       return;
     }
-    jQuery(element).replaceWith(jQuery.parseJSON('"' + value + '"'));
+    var type = this.GetType(element);
+    jQuery(element).replaceWith(this.Decode(value, type));
     jQuery(document).trigger('Enigma:Changed');
   };
   
@@ -20,7 +37,8 @@
     var link = jQuery("<a />", {
       href : "#",
       text : text,
-      'data-enigmav' : this.GetValue(element)
+      'data-enigmav' : this.GetValue(element),
+      'data-enigmat' : this.GetType(element)
     });
     jQuery(element).replaceWith(link);
     jQuery(link).on('click', function() {
@@ -31,6 +49,8 @@
   };
   
   Enigma.prototype.PostGAEvent = function(category, label, action, value) {
+    /** global Leona */
+    /** global ga */
     if (typeof Leona !== 'undefined' && Leona.analytics) {
       var aData = Leona.analytics.getCoreData();
       aData.t = 'event';

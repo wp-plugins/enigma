@@ -3,7 +3,7 @@ Contributors: Shuhai Shen
 Donate link: http://mv2.it/donate
 Tags: spam, bot, robot, encrypt, anti-spam, enigma
 Requires at least: 2.9
-Tested up to: 4.2.1
+Tested up to: 4.5
 Stable tag: trunk
 License: MIT
 License URI: http://www.opensource.org/licenses/mit-license.php
@@ -58,7 +58,10 @@ decryption is done automatically.
 
 == Changelog ==
 
-= 2.4=
+= 2.5 =
+Multiple type of encoding.
+
+= 2.4 =
 * Actually integrated with Google Analytics.
 * Enigma now fires a 'Enigma:Changed' event on document, after hidden content are displayed.
 

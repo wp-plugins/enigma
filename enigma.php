@@ -4,7 +4,7 @@ Plugin Name: Enigma
 Plugin URI: https://leonax.net/
 Description: Enigma encrypts any text on demand on server and decrypts in browser to avoid censorship. 
 Author: Shuhai Shen
-Version: 2.4
+Version: 2.5
 Author URI: https://leonax.net/
 License: MIT
 */
@@ -36,47 +36,55 @@ function enigma_ord($str, $len = -1, $idx = 0, &$bytes = 0){
     return false;
   } else if ($h <= 0xDF && $idx < $len - 1) {
     $bytes = 2;
-    return ($h & 0x1F) <<  6 | (ord($str{$idx + 1}) & 0x3F);
+    return ($h & 0x1F) <<  6 | (ord($str[$idx + 1]) & 0x3F);
   } else if ($h <= 0xEF && $idx < $len - 2) {
     $bytes = 3;
-    return ($h & 0x0F) << 12 | (ord($str{$idx + 1}) & 0x3F) << 6
-                             | (ord($str{$idx + 2}) & 0x3F);
+    return ($h & 0x0F) << 12 | (ord($str[$idx + 1]) & 0x3F) << 6
+                             | (ord($str[$idx + 2]) & 0x3F);
   } else if ($h <= 0xF4 && $idx < $len - 3) {
     $bytes = 4;
-    return ($h & 0x0F) << 18 | (ord($str{$idx + 1}) & 0x3F) << 12
-                             | (ord($str{$idx + 2}) & 0x3F) << 6
-                             | (ord($str{$idx + 3}) & 0x3F);
+    return ($h & 0x0F) << 18 | (ord($str[$idx + 1]) & 0x3F) << 12
+                             | (ord($str[$idx + 2]) & 0x3F) << 6
+                             | (ord($str[$idx + 3]) & 0x3F);
   }
   return false;
 }
 
-function enigma_unicode($dec) {
-  return '\\u' . str_pad(dechex($dec), 4, '0', STR_PAD_LEFT);
+function enigma_unicode($dec, $type) {
+  $hex = dechex($dec);
+  if ($type === 0) {
+    return '\\u' . str_pad($hex, 4, '0', STR_PAD_LEFT);
+  }
+  if ($type === 1) {
+    if ($dec < 256) {
+      return '-' . str_pad($hex, 2, '0', STR_PAD_LEFT);
+    }
+    return '=' . str_pad($hex, 4, '0', STR_PAD_LEFT);
+  }
 }
 
 function enigma_encode($content, $text, $ondemand) {
   if ($content === NULL || is_feed()){
     return $text;
   }
-
+  
   $len = strlen($content);
-
   if ($len === 0) {
     return "";
   }
 
+  $encoding_type = mt_rand(0, 1);
   $idx = 0;
-
-  $ord = enigma_ord($content, $len, $idx, $idx);
-  $script = enigma_unicode($ord);
+  $script = '';
   while ($idx < $len) {
     $bytes = 0;
-    $script .= enigma_unicode(enigma_ord($content, $len, $idx, $bytes));
+    $unicode = enigma_ord($content, $len, $idx, $bytes);
+    $script .= enigma_unicode($unicode, $encoding_type);
     $idx += $bytes;
   }
 
   $divid = uniqid("engimadiv");
-  $js = "<span id='$divid' data-enigmav='$script' data-enigmad='$ondemand'>$text</span>";
+  $js = "<span id='$divid' data-enigmat='$encoding_type' data-enigmav='$script' data-enigmad='$ondemand'>$text</span>";
 
   return $js;
 }
